@@ -3,11 +3,11 @@
 let updateTimer = (deadline) => {
     let time = deadline - new Date()
     return {
-        'days': Math.floor(time / (1000 * 60 * 60 * 24)),
-        'hours': Math.floor((time / (1000 * 60 * 60)) % 24),
-        'minutes': Math.floor((time / 1000 / 60) % 60),
-        'seconds': Math.floor((time / 1000) % 60),
-        'total': time
+        days: Math.floor(time / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((time / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((time / 1000 / 60) % 60),
+        seconds: Math.floor((time / 1000) % 60),
+        total: time,
     }
 }
 
@@ -39,10 +39,19 @@ let startTimer = (id, deadline) => {
             timer.seconds = '0' + timer.seconds
         }
 
-        clock.innerHTML = '<span class="front">' + timer.days + '</span>' +
-            '<span class="front">' + timer.hours + '</span>' +
-            '<span class="front">' + timer.minutes + '</span>' +
-            '<span class="front">' + timer.seconds + '</span>'
+        clock.innerHTML =
+            '<span class="front">' +
+            timer.days +
+            '</span>' +
+            '<span class="front">' +
+            timer.hours +
+            '</span>' +
+            '<span class="front">' +
+            timer.minutes +
+            '</span>' +
+            '<span class="front">' +
+            timer.seconds +
+            '</span>'
 
         // animaciones
         let spans = clock.getElementsByTagName('span')
@@ -65,10 +74,14 @@ let startTimer = (id, deadline) => {
     }, 1000)
 }
 
+function component() {
+    const element = document.createElement('div')
+    element.innerHTML += 'Hello World'
+    return element
+}
+
 window.onload = () => {
-    let deadline = new Date("Feb 23, 2018 16:00:00 GMT-0500 (America/Bogota)")
-    // let deadline = new Date("2018-02-23")
-    // let deadline = new Date(2018,1,23,16,0,0);
-    startTimer('clock', deadline)
-    //document.getElementById("clock").innerHTML = deadline.toDateString();
+    // let deadline = new Date('Nov 21, 2020 00:00:00 GMT-0300 (America/Buenos_Aires)')
+    // startTimer('clock', deadline)
+    document.body.appendChild(component())
 }
